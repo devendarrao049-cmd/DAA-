@@ -3,15 +3,19 @@ def quick_sort(arr):
         return arr
 
     pivot = arr[0]
+    left = []
+    right = []
 
-    left = [x for x in arr[1:] if x <= pivot]
-    right = [x for x in arr[1:] if x > pivot]
+    for num in arr[1:]:
+        if num <= pivot:
+            left.append(num)
+        else:
+            right.append(num)
 
     return quick_sort(left) + [pivot] + quick_sort(right)
 
 
-arr = [5, 3, 4, 1, 2]
+arr = list(map(int, input("Enter the elements separated by spaces: ").split()))
 
-arr = quick_sort(arr)
-
-print("Sorted array:", arr)
+print("Original Array:", arr)
+print("Sorted Array:", quick_sort(arr))

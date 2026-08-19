@@ -1,13 +1,18 @@
-arr = [5, 3, 4, 1, 2]
+def insertion_sort(arr):
+    n = len(arr)
+    for i in range(1,n):
+        key = arr[i]
+        j = i - 1
+        
+        while j >=0 and arr[j] > key:
+            arr[j+1] = arr[j]
+            j-=1
+        arr[j+1]= key
 
-for i in range(1, len(arr)):
-    key = arr[i]
-    j = i - 1
+numbers = list(map(int,input("Enter the numbers separating by commas: ").split()))
 
-    while j >= 0 and arr[j] > key:
-        arr[j + 1] = arr[j]
-        j = j - 1
+print("Original list: ",numbers)
 
-    arr[j + 1] = key
+insertion_sort(numbers)
 
-print("Sorted array:", arr)
+print("Sorted_list: ",numbers)

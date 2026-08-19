@@ -1,37 +1,29 @@
 def merge_sort(arr):
-    if len(arr) > 1:
-        mid = len(arr) // 2
+    if len(arr) <= 1:
+        return arr
 
-        left = arr[:mid]
-        right = arr[mid:]
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
 
-        merge_sort(left)
-        merge_sort(right)
+    result = []
+    i = j = 0
 
-        i = j = k = 0
-
-        while i < len(left) and j < len(right):
-            if left[i] < right[j]:
-                arr[k] = left[i]
-                i += 1
-            else:
-                arr[k] = right[j]
-                j += 1
-            k += 1
-
-        while i < len(left):
-            arr[k] = left[i]
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
             i += 1
-            k += 1
-
-        while j < len(right):
-            arr[k] = right[j]
+        else:
+            result.append(right[j])
             j += 1
-            k += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
 
 
-arr = [5, 3, 4, 1, 2]
+arr = list(map(int, input("Enter the elements separated by spaces: ").split()))
 
-merge_sort(arr)
-
-print("Sorted array:", arr)
+print("Original Array:", arr)
+print("Sorted Array:", merge_sort(arr))
